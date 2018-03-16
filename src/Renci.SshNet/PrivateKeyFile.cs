@@ -148,8 +148,8 @@ namespace Renci.SshNet
 
             if (!string.IsNullOrEmpty(cipherName) && !string.IsNullOrEmpty(salt))
             {
-                if (string.IsNullOrEmpty(passPhrase))
-                    throw new SshPassPhraseNullOrEmptyException("Private key is encrypted but passphrase is empty.");
+                if (passPhrase==null)
+                    throw new SshPassPhraseNullOrEmptyException("Private key is encrypted but passphrase is null, use empty if empty passphrase is intended (not recommended).");
 
                 var binarySalt = new byte[salt.Length / 2];
                 for (var i = 0; i < binarySalt.Length; i++)
